@@ -42,7 +42,6 @@ export default class LoginComponent implements OnInit {
         this.route.navigateByUrl('/')
       }
     } else {
-      // this.message.error('请检查表单是否填写正确！');
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
@@ -50,6 +49,9 @@ export default class LoginComponent implements OnInit {
         }
       });
     }
+  }
+  forgotClick() {
+    this.message.warning('自己写吧');
   }
   navigateToPage = () => {
     this.route.navigateByUrl('/')
