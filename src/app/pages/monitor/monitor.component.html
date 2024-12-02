@@ -1,0 +1,6 @@
+<p>{{childrenValue && '自定义组件'}}monitor routes!</p>
+<p>{{childrenValue}}</p>
+<p>{{inputValue && "父组件变动子组件也更改："+ inputValue }}</p>
+@if (childrenValue) {
+<button nz-button nzType="primary" (click)="buttonClick()">子调用父事件更改父的年龄和传递子的值</button>
+}

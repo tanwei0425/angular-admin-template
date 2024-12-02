@@ -1,0 +1,57 @@
+@headerHeight : 58px;
+@contentMargin: 16px;
+
+.header-layout {
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+  height         : @headerHeight;
+  padding        : 0;
+  background     : #fff;
+  box-shadow     : 0 1px 4px rgba(0, 21, 41, .08);
+}
+
+.header-trigger {
+  height    : @headerHeight;
+  padding   : 0px @contentMargin;
+  font-size : 20px;
+  transition: all .3s, padding 0s;
+}
+
+.header-setting {
+  height   : @headerHeight;
+  padding  : 0px @contentMargin;
+  font-size: 20px;
+}
+
+.setting-name {
+  /* 动画持续N秒，匀速，循环播放 */
+  margin-right: 8px;
+  font-size   : 16px;
+}
+
+.setting-icon {
+  /* 动画持续N秒，匀速，循环播放 */
+  animation: spin 9s linear infinite;
+}
+
+.trigger-icon,
+.setting-icon {
+  cursor: pointer;
+}
+
+.trigger-icon:hover,
+.setting-icon:hover {
+  color: var(--primary-color);
+}
+
+/* 定义旋转动画 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,61 @@
+<div>
+  <form class="table-search" nz-form (ngSubmit)="submitForm()" nzLayout="inline" [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="labelNzSpan" nzFor="mobile">联系方式</nz-form-label>
+      <nz-form-control [nzSpan]="controlNzSpan">
+        <input id="mobile" formControlName="mobile" nz-input autocomplete="off" type="text" placeholder="请输入联系方式">
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" class="search-area">
+        <button nz-button [nzType]="'primary'">搜索</button>
+        <button nz-button (click)="resetForm($event)">重置</button>
+      </div>
+    </div>
+  </form>
+  <nz-table #basicTable [nzData]="data" [nzLoading]="loading" nzShowSizeChanger [nzFrontPagination]="false"
+    [nzTotal]="pagination.total" [nzPageSize]="pagination.pageSize" [nzPageIndex]="pagination.pageIndex"
+    (nzQueryParams)="onQueryParamsChange($event)" nzSize="small" nzTableLayout="fixed" nzShowQuickJumper
+    nzShowSizeChanger>
+    <thead>
+      <tr>
+        <th nzWidth="120px">单位名称</th>
+        <th nzWidth="80px">单位法人</th>
+        <th nzWidth="80px">联系人</th>
+        <th nzWidth="80px">联系电话</th>
+        <th nzWidth="80px">审核状态</th>
+        <th nzWidth="100px">单位地址</th>
+        <th nzWidth="100px">企业简介</th>
+        <th nzWidth="120px">企业入驻目的，资源，诉求</th>
+        <th nzWidth="150px">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of basicTable.data; track item.id) {
+      <tr>
+        <td nzEllipsis [nzTooltipTitle]="item.contacts" nzTooltipPlacement="top" nz-button nz-tooltip>{{
+          item.companyName }}</td>
+        <td>{{ item.legalPerson }}</td>
+        <td>{{ item.contacts }}</td>
+        <td>{{ item.mobile }} </td>
+        <td>
+          <span *ngIf="item.audit===0">待审核</span>
+          <span *ngIf="item.audit===1">审核通过</span>
+          <span *ngIf="item.audit===-1">审核不通过</span>
+        </td>
+        <td nzEllipsis [nzTooltipTitle]="item.address" nzTooltipPlacement="top" nz-button nz-tooltip>{{ item.address }}
+        </td>
+        <td nzEllipsis [nzTooltipTitle]="item.introduction" nzTooltipPlacement="top" nz-button nz-tooltip>{{
+          item.introduction }}</td>
+        <td nzEllipsis [nzTooltipTitle]="item.purpose" nzTooltipPlacement="top" nz-button nz-tooltip>{{ item.purpose }}
+        </td>
+        <td *ngIf="item.audit===0">
+          <a (click)="auditClick(item.id,1)">审核通过</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="auditClick(item.id,-1)">审核不通过</a>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+</div>

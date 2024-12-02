@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "target": "https://volunteer-dev-api.trsafety.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "https": true,
+    "pathRewrite": {
+      "^/api": "/api"
+    }
+  }
+}

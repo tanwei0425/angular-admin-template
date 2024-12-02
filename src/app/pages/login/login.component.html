@@ -1,0 +1,58 @@
+<div class="login">
+  <div class="login-title">登录</div>
+  <div class="login-tip">
+    <nz-alert nzType="info" [nzIcon]="customIconTemp" nzShowIcon [nzMessage]="customMessageTemp"
+      [nzDescription]="customDescriptionTemp">
+    </nz-alert>
+    <ng-template #customIconTemp>
+      <span nz-icon class="classColor" nzType="question-circle" nzTheme="outline"></span>
+    </ng-template>
+    <ng-template #customMessageTemp>
+      <div class="classColor">友情提示</div>
+    </ng-template>
+    <ng-template #customDescriptionTemp>
+      <div class="classColor">如需要登录系统请联系{{websiteData.name}}</div>
+      <div class="classColor">联系电话{{websiteData.mobile}}</div>
+    </ng-template>
+  </div>
+
+  <form nz-form (ngSubmit)="submitForm()" [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="登录账号不能为空!">
+        <nz-input-group nzSize="large" [nzPrefix]="customUserIcon">
+          <input id="username" formControlName="username" nz-input autocomplete="off" type="text" placeholder="请输入登录账号">
+        </nz-input-group>
+        <ng-template #customUserIcon>
+          <span nz-icon class="classColor classSize" nzType="user" nzTheme="outline"></span>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="登录密码不能为空!">
+        <nz-input-group nzSize="large" [nzPrefix]="customPasswordIcon" [nzSuffix]="suffixTemplate">
+          <input id="password" formControlName="password" nz-input [type]="passwordVisible ? 'text' : 'password'"
+            placeholder="请输入登录密码" type="text">
+        </nz-input-group>
+        <ng-template #customPasswordIcon>
+          <span nz-icon class="classColor classSize" nzType="lock" nzTheme="outline"></span>
+        </ng-template>
+        <ng-template #suffixTemplate>
+          <span nz-icon ngClass="classColor classSize" class="ant-input-password-icon"
+            [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></span>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <div style="text-align: right;">
+          <a class="login-form-forgot">忘记密码</a>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzBlock nzSize="large" nzType="primary">登 录</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

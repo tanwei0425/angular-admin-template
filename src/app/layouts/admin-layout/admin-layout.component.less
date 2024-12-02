@@ -1,0 +1,58 @@
+@headerHeight : 58px;
+@contentMargin: 16px;
+
+:host {
+  display                : flex;
+  text-rendering         : optimizeLegibility;
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.admin-layout {
+  width : 100%;
+  height: 100vh;
+}
+
+.sider-layout {
+  position  : relative;
+  z-index   : 10;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+}
+
+nz-header {
+  padding    : 0;
+  width      : 100%;
+  z-index    : 2;
+  height     : @headerHeight;
+  line-height: @headerHeight;
+}
+
+nz-content {
+  margin: @contentMargin;
+}
+
+.content-layout {
+  padding   : @contentMargin;
+  background: #fff;
+  height    : 100%;
+  overflow  : auto;
+}
+
+.layout-spin {
+  width          : 100vw;
+  height         : 100vh;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+::ng-deep .ant-spin {
+  height    : 100vh !important;
+  max-height: 100vh !important;
+}
+
+::ng-deep .ant-spin-text {
+  font-size : 16px !important;
+  margin-top: 5px;
+}

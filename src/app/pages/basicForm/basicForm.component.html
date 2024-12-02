@@ -1,0 +1,113 @@
+<div nz-row style="margin-bottom: 15px;">
+  <div nz-col [nzOffset]="labelNzSpan">basicForm routes!</div>
+</div>
+<form nz-form (ngSubmit)="submitForm()" [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="username">用户名称</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="用户名称不能为空!">
+      <nz-input-group [nzSuffix]="inputClearTpl">
+        <input id="username" formControlName="username" nz-input autocomplete="off" type="text" placeholder="请输入用户名称">
+      </nz-input-group>
+      <ng-template #inputClearTpl>
+        <span *ngIf="validateForm.get('username')?.value" nz-icon class="ant-input-clear-icon" nzTheme="fill"
+          nzType="close-circle" (click)="validateForm.get('username')?.setValue(null)"></span>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="password">密码</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="密码不能为空!">
+      <nz-input-group [nzSuffix]="suffixTemplate">
+        <input id="password" formControlName="password" nz-input [type]="passwordVisible ? 'text' : 'password'"
+          placeholder="请输入密码" type="text">
+      </nz-input-group>
+      <ng-template #suffixTemplate>
+        <span nz-icon class="ant-input-password-icon" [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+          (click)="passwordVisible = !passwordVisible"></span>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="email">E-mail</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+      <input id="email" nz-input formControlName="email" placeholder="请输入E-mail地址" type="email" />
+      <ng-template #emailErrorTpl let-control>
+        @if (control.errors?.['email']) {
+        请输入正确的E-mail!
+        }
+        @if (control.errors?.['required']) {
+        E-mail不能为空！
+        }
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="education">学历</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="学历不能为空!">
+      <nz-select nzId="education" formControlName="education" nzPlaceHolder="请选择学历" nzAllowClear>
+        <nz-option nzValue="高中" nzLabel="高中"></nz-option>
+        <nz-option nzValue="大专" nzLabel="大专"></nz-option>
+        <nz-option nzValue="本科" nzLabel="本科"></nz-option>
+        <nz-option nzValue="研究生" nzLabel="研究生"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="city">地址</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="地址不能为空!">
+      <nz-cascader formControlName="city" [nzOptions]="nzOptions" nzPlaceHolder="请选择地址" nzAllowClear></nz-cascader>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="treeSelect" nzLabelWrap>下拉树下拉树下拉树</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="下拉树不能为空!">
+      <nz-tree-select formControlName="treeSelect" [nzNodes]="nodes" nzShowSearch
+        nzPlaceHolder="请选择下拉树"></nz-tree-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="graduate">上学时间</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="上学时间不能为空!">
+      <nz-range-picker formControlName="graduate" [nzPlaceHolder]="['开始日期','毕业日期']" nzFormat="yyyy-MM-dd"
+        nzAllowClear></nz-range-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="temperature">温度</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="温度不能为空!">
+      <nz-slider formControlName="temperature" [nzMarks]="marks"></nz-slider>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="color">幸运色</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="幸运色不能为空!">
+      <nz-color-picker formControlName="color" nzDisabledAlpha nzShowText></nz-color-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="gender">性别</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzErrorTip="性别不能为空!">
+      <nz-radio-group id="gender" formControlName="gender" nzPlaceHolder="请选择性别">
+        <label nz-radio nzValue="male">male</label>
+        <label nz-radio nzValue="female">female</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="labelNzSpan" nzRequired nzFor="description">个人描述</nz-form-label>
+    <nz-form-control [nzSpan]="controlNzSpan" nzHasFeedback nzErrorTip="请输入个人描述！">
+      <nz-textarea-count [nzMaxCharacterCount]="500">
+        <textarea id="description" nz-input formControlName="description" rows="2" placeholder="请输入个人描述"></textarea>
+      </nz-textarea-count>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="labelNzSpan">
+      <nz-space>
+        <!-- <button *nzSpaceItem nz-button nzType="primary" [disabled]="!validateForm.valid">提交</button> -->
+        <button *nzSpaceItem nz-button nzType="primary">提交</button>
+        <button *nzSpaceItem nz-button (click)="resetForm($event)">重置</button>
+      </nz-space>
+    </nz-form-control>
+  </nz-form-item>
+</form>

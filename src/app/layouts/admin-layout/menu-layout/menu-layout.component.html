@@ -1,0 +1,26 @@
+<div class="sider-logo">
+  <a routerLink="/">
+    <img class="logo-img" [src]="websiteData.menuIcon" alt="logo">
+    <h1 class="logo-title">{{websiteData.menuTitle}}</h1>
+  </a>
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+  <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu$ | async, level: 0 }"></ng-container>
+  <ng-template #menuTpl let-menus let-level="level">
+    @for (menu of menus; track menu) {
+    <li *ngIf="!menu.children" nz-menu-item [nzPaddingLeft]="(level + 1) * 24" nzMatchRouter
+      [nzDisabled]="menu.disabled">
+      <a routerLink="{{menu.path}}">
+        <span *ngIf="menu.icon" nz-icon [nzType]="menu.icon"></span>
+        <span>{{ menu.title }}</span>
+      </a>
+    </li>
+    <li *ngIf="menu.children" nz-submenu nzOpen [nzPaddingLeft]="(level + 1) * 24" [nzTitle]="menu.title"
+      [nzIcon]="menu.icon" [nzDisabled]="menu.disabled">
+      <ul>
+        <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children,level: level + 1 }" />
+      </ul>
+    </li>
+    }
+  </ng-template>
+</ul>

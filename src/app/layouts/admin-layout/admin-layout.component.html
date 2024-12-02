@@ -1,0 +1,19 @@
+<nz-layout *ngIf="(user$ | async)?.name; else layoutLoading" class="admin-layout">
+  <nz-sider class="sider-layout" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <menu-layout [isCollapsed]="isCollapsed"></menu-layout>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <header-layout (collapsedChange)="collapsedChange()" [isCollapsed]="isCollapsed"></header-layout>
+    </nz-header>
+    <nz-content>
+      <div class="content-layout">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+<ng-template #layoutLoading>
+  <nz-spin class="layout-spin" nzSpinning nzSize="large" nzTip="Loading..."></nz-spin>
+</ng-template>

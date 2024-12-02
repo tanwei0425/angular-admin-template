@@ -1,0 +1,39 @@
+.auth-layout {
+  display   : flex;
+  width     : 100vw;
+  height    : 100vh;
+  background: #f5f5f5;
+
+  &-left {
+    display        : flex;
+    flex           : 1;
+    justify-content: center;
+    align-items    : center;
+    flex-direction : column;
+    background     : linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)) center center / cover no-repeat, url("../../../assets/images/login-bg.jpg");
+
+    &-title {
+      font-size  : 50px;
+      font-weight: 700;
+    }
+
+    &-img {
+      max-width: 560px;
+      margin   : 3vh 0;
+    }
+
+    &-footer {
+      font-size: 16px;
+    }
+  }
+
+  &-right {
+    width             : 480px;
+    background        : #f5f5f5;
+    padding           : 0 68px;
+    display           : flex;
+    justify-content   : center;
+    // text-align     : center;
+    flex-direction    : column;
+  }
+}
