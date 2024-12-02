@@ -9,7 +9,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from '@core/apiServices/api.service';
-import { tabelDataType } from './types'
+import { tabelDataType } from './companyApply.data'
 
 @Component({
   selector: 'app-companyApply',
@@ -88,12 +88,8 @@ export class CompanyApplyComponent implements OnInit {
     }
     this.apiService.get('company/list', data).subscribe({
       next: (value) => {
-        console.log(value, 'value');
-        return;
-        const data = value?.data?.content
-        const total = value?.data?.totalElements
-        this.data = data
-        this.pagination.total = total
+        this.data = value?.content || []
+        this.pagination.total = value?.totalElements || 0
         this.loading = false
       },
       error: (error) => {

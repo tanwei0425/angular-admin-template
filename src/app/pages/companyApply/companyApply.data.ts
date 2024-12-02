@@ -10,3 +10,7 @@ export interface tabelDataType {
   purpose: string; // 企业入驻目的，资源，诉求
 }
 
+
+export const tableThead = {
+
+}

@@ -30,7 +30,8 @@ export class AuthService {
         password,
       }).subscribe({
         next: async (value) => {
-          localStorage.setItem(this.tokenKey, value.data.token); // 存储 token
+          console.log(value, 'value');
+          localStorage.setItem(this.tokenKey, value.token); // 存储 token
           this.isAuthenticatedUser = true;
           this.userService.apiGetUserConfig()
           resolve(true)

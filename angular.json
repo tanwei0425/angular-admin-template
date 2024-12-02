@@ -81,7 +81,7 @@
             "buildTarget": "volunteer-angular-admin:build",
             "proxyConfig": "proxy.config.json",
             "open": true,
-            "port": 2223
+            "port": 6888
           },
           "configurations": {
             "production": {

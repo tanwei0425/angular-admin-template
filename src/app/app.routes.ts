@@ -11,7 +11,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     canActivateChild: [authChildGuard],
     children: [
-      { path: '', pathMatch: 'full', redirectTo: '/companyApply' },
+      { path: '', pathMatch: 'full', redirectTo: '/home' },
       { path: 'home', loadChildren: () => import('./pages/home/home.routes').then(m => m.HOME_ROUTES) },
       { path: 'companyApply', loadChildren: () => import('./pages/companyApply/companyApply.routes').then(m => m.COMPANY_APPLY_ROUTES) },
       { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.routes').then(m => m.WELCOME_ROUTES) },
@@ -27,5 +27,5 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
     ],
   },
-  { path: '**', redirectTo: '/companyApply' },
+  { path: '**', redirectTo: '/home' },
 ];
